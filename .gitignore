@@ -1,0 +1,22 @@
+# Secrets 
+.env
+nvidia.txt
+
+# Claude Code's own local project data
+.claude/
+
+# Generated/runtime data - regenerate via the ingestion pipeline / app usage
+ready_raw.db
+metrics.db
+chroma_db/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# OS cruft
+.DS_Store
+Thumbs.db

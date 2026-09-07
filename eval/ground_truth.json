@@ -1,0 +1,182 @@
+[
+  {
+    "question": "What recovery resources does FEMA provide to state, local, tribal, and territorial government officials to support community disaster recovery?",
+    "expected_chunk_id": 804,
+    "expected_url": "http://www.fema.gov/about/how-fema-works",
+    "expected_page_title": "How FEMA Works | FEMA.gov"
+  },
+  {
+    "question": "How can I prepare for a disaster by documenting my property and ensuring I have the necessary insurance coverage?",
+    "expected_chunk_id": 869,
+    "expected_url": "https://www.ready.gov/be-informed",
+    "expected_page_title": "Disasters and Emergencies | Ready.gov"
+  },
+  {
+    "question": "How do I update my main location in the FEMA App?",
+    "expected_chunk_id": 665,
+    "expected_url": "https://www.fema.gov/mobile-app",
+    "expected_page_title": "FEMA Mobile Products | FEMA.gov"
+  },
+  {
+    "question": "What financial preparedness steps does ready.gov recommend taking before a disaster?",
+    "expected_chunk_id": 679,
+    "expected_url": "https://www.ready.gov/financial-preparedness",
+    "expected_page_title": "Financial Preparedness | Ready.gov"
+  },
+  {
+    "question": "What specific steps should I take to prepare for a disaster if I have a disability or access and functional needs?",
+    "expected_chunk_id": 633,
+    "expected_url": "https://www.ready.gov/people-disabilities",
+    "expected_page_title": "People with Disabilities | Ready.gov"
+  },
+  {
+    "question": "What are the specific steps recommended by ready.gov to prepare for a hurricane?",
+    "expected_chunk_id": 604,
+    "expected_url": "https://www.ready.gov/hurricanes",
+    "expected_page_title": "Hurricanes | Ready.gov"
+  },
+  {
+    "question": "What are the recommended safety tips for staying safe in the summer heat during July 4th outdoor activities?",
+    "expected_chunk_id": 845,
+    "expected_url": "http://www.fema.gov/blog/freedom-and-fireworks-how-stay-safe-while-celebrating-nations-250th-birthday",
+    "expected_page_title": "Freedom and Fireworks: How to Stay Safe While Celebrating the Nation’s 250th Birthday | FEMA.gov"
+  },
+  {
+    "question": "What specific precautions should people with disabilities, access and functional needs, and older adults take to prepare for and stay safe during extreme heat?",
+    "expected_chunk_id": 644,
+    "expected_url": "https://www.ready.gov/people-disabilities",
+    "expected_page_title": "People with Disabilities | Ready.gov"
+  },
+  {
+    "question": "What are the specific threats from hurricanes and what immediate actions should I take to protect myself during one?",
+    "expected_chunk_id": 623,
+    "expected_url": "https://www.ready.gov/sites/default/files/2024-07/ready.gov_hurricane_info-sheet.pdf",
+    "expected_page_title": "BE PREPARED FOR A HURRICANE"
+  },
+  {
+    "question": "In what languages is the FEMA mission page available?",
+    "expected_chunk_id": 794,
+    "expected_url": "http://www.fema.gov/about/how-fema-works",
+    "expected_page_title": "How FEMA Works | FEMA.gov"
+  },
+  {
+    "question": "What is the Integrated Public Alert and Warning System (IPAWS) and what are its key features regarding alerting authorities, costs, and targeting?",
+    "expected_chunk_id": 675,
+    "expected_url": "https://www.ready.gov/alerts",
+    "expected_page_title": "Emergency Alerts | Ready.gov"
+  },
+  {
+    "question": "What is the purpose of FEMA's Continuing Training Grants (CTG) program?",
+    "expected_chunk_id": 816,
+    "expected_url": "http://www.fema.gov/emergency-managers/national-preparedness/training?utm_source=homepage&utm_medium=button&utm_campaign=home_training_cta&utm_content=help_training_button",
+    "expected_page_title": "Training and Education | FEMA.gov"
+  },
+  {
+    "question": "What training delivery methods does the National Fire Academy use to reach first responders?",
+    "expected_chunk_id": 823,
+    "expected_url": "http://www.fema.gov/emergency-managers/national-preparedness/training?utm_source=homepage&utm_medium=button&utm_campaign=home_training_cta&utm_content=training_callout_button",
+    "expected_page_title": "Training and Education | FEMA.gov"
+  },
+  {
+    "question": "What training courses are listed in the Browse Training Catalog section?",
+    "expected_chunk_id": 821,
+    "expected_url": "http://www.fema.gov/emergency-managers/national-preparedness/training?utm_source=homepage&utm_medium=button&utm_campaign=home_training_cta&utm_content=training_callout_button",
+    "expected_page_title": "Training and Education | FEMA.gov"
+  },
+  {
+    "question": "What are the three steps outlined in the Disaster Preparedness Guide for Older Adults?",
+    "expected_chunk_id": 701,
+    "expected_url": "https://www.ready.gov/seniors",
+    "expected_page_title": "Older Adults | Ready.gov"
+  },
+  {
+    "question": "What should I include in a medication emergency kit?",
+    "expected_chunk_id": 892,
+    "expected_url": "https://www.ready.gov/collection/tips-for-medications",
+    "expected_page_title": "Tips for Medication | Ready.gov"
+  },
+  {
+    "question": "What basic preparedness strategies can the FEMA app help me learn?",
+    "expected_chunk_id": 659,
+    "expected_url": "https://www.fema.gov/mobile-app",
+    "expected_page_title": "FEMA Mobile Products | FEMA.gov"
+  },
+  {
+    "question": "What are the key steps for hurricane preparedness regarding insurance and important documents?",
+    "expected_chunk_id": 744,
+    "expected_url": "https://www.ready.gov/hurricane-toolkit",
+    "expected_page_title": "Hurricane Season Preparedness Digital Toolkit | Ready.gov"
+  },
+  {
+    "question": "What is the difference between a hurricane, a typhoon, and a tropical cyclone?",
+    "expected_chunk_id": 763,
+    "expected_url": "http://oceanservice.noaa.gov/facts/cyclone.html",
+    "expected_page_title": "What is the difference between a hurricane and a typhoon?"
+  },
+  {
+    "question": "Why is it important for people with disabilities and their families to consider individual circumstances and needs when preparing for emergencies and disasters?",
+    "expected_chunk_id": 631,
+    "expected_url": "https://www.ready.gov/people-disabilities",
+    "expected_page_title": "People with Disabilities | Ready.gov"
+  },
+  {
+    "question": "What are the titles and publication dates of the three disaster safety articles listed on this page?",
+    "expected_chunk_id": 766,
+    "expected_url": "https://www.cdc.gov/disasters/hurricanes/index.html",
+    "expected_page_title": "Natural Disasters and Severe Weather | Natural Disasters | CDC"
+  },
+  {
+    "question": "What programs does the Center for Homeland Defense and Security (CHDS) offer?",
+    "expected_chunk_id": 815,
+    "expected_url": "http://www.fema.gov/emergency-managers/national-preparedness/training?utm_source=homepage&utm_medium=button&utm_campaign=home_training_cta&utm_content=help_training_button",
+    "expected_page_title": "Training and Education | FEMA.gov"
+  },
+  {
+    "question": "What is the Rural Domestic Preparedness Consortium (RDPC) comprised of?",
+    "expected_chunk_id": 814,
+    "expected_url": "http://www.fema.gov/emergency-managers/national-preparedness/training?utm_source=homepage&utm_medium=button&utm_campaign=home_training_cta&utm_content=help_training_button",
+    "expected_page_title": "Training and Education | FEMA.gov"
+  },
+  {
+    "question": "What are the features of the FEMA App, American Red Cross Emergency app, and The Weather Channel app, including their language availability and download platforms?",
+    "expected_chunk_id": 884,
+    "expected_url": "https://www.ready.gov/sites/default/files/2020-03/ready_know-your-alerts-and-warnings.pdf",
+    "expected_page_title": "KNOW YOURALERTS ANDWARNINGS"
+  },
+  {
+    "question": "What languages is the ready.gov website available in?",
+    "expected_chunk_id": 683,
+    "expected_url": "https://www.ready.gov/get-tech-ready",
+    "expected_page_title": "Get Tech Ready | Ready.gov"
+  },
+  {
+    "question": "What specific items should I include in my emergency kit and where should I store supplies for hurricane preparedness?",
+    "expected_chunk_id": 742,
+    "expected_url": "https://www.ready.gov/hurricane-toolkit",
+    "expected_page_title": "Hurricane Season Preparedness Digital Toolkit | Ready.gov"
+  },
+  {
+    "question": "What are the three main steps to prepare pets for emergencies according to ready.gov?",
+    "expected_chunk_id": 693,
+    "expected_url": "https://www.ready.gov/pets",
+    "expected_page_title": "Prepare Your Pets for Disasters | Ready.gov"
+  },
+  {
+    "question": "Where can I find the \"Prepare Your Pets for Disasters\" brochure in Spanish?",
+    "expected_chunk_id": 699,
+    "expected_url": "https://www.ready.gov/pets",
+    "expected_page_title": "Prepare Your Pets for Disasters | Ready.gov"
+  },
+  {
+    "question": "Why are text messages more reliable than phone calls during emergencies, and what specific steps can I take to keep my phone charged, store important documents digitally, manage contacts, and access finances electronically?",
+    "expected_chunk_id": 685,
+    "expected_url": "https://www.ready.gov/get-tech-ready",
+    "expected_page_title": "Get Tech Ready | Ready.gov"
+  },
+  {
+    "question": "How can I find my state and local evacuation plans, including designated zones and routes?",
+    "expected_chunk_id": 651,
+    "expected_url": "https://www.ready.gov/evacuation",
+    "expected_page_title": "Evacuation | Ready.gov"
+  }
+]

@@ -1,0 +1,91 @@
+# One-time ingestion flow: crawl -> chunk -> index into Elasticsearch.
+# No schedule/trigger attached on purpose (per project decision: ready.gov
+# content barely changes, so a one-off run is enough to demonstrate
+# orchestration - retries, logging, task dependencies - without adding a
+# recurring job).
+#
+# IMPORTANT - read before running (all confirmed by actually creating and
+# running this flow against a live Kestra 1.3.37 instance):
+#
+# - Kestra's Docker task runner launches SIBLING containers via the host's
+#   Docker socket (mounted in docker-compose.yml), not containers "inside"
+#   the Kestra container. That means the `volumes` bind-mount below must be
+#   a real path ON YOUR HOST, not a path inside the Kestra container.
+#   Replace the placeholder path with your actual project path, e.g. on
+#   this machine: "//c/Users/Cels/Downloads/rng:/app" (forward slashes,
+#   Docker Desktop translates it).
+# - The task runner class is io.kestra.plugin.scripts.runner.docker.Docker
+#   (NOT io.kestra.plugin.core.runner.Docker, despite that being a
+#   reasonable-sounding guess - Kestra's API rejected it outright).
+# - The container image is set via `containerImage` on the TASK itself,
+#   not as an `image` field inside `taskRunner` - the Docker runner's own
+#   schema has no `image` property at all.
+# - There is no `workingDirectory` field on this task type (the API lists
+#   its exact known properties if you get this wrong) - `cd /app` inside
+#   each command instead.
+#
+# Setup:
+#   1. docker compose up -d          (starts Elasticsearch + Kestra)
+#   2. Run `docker network ls` and confirm the exact network name Compose
+#      created (it's `<project-folder-name>_ready-net`, e.g. `rng_ready-net`
+#      for this project folder - adjust `networkMode` below if different).
+#   3. Open http://localhost:8080 and create an admin user (first run only).
+#   4. Edit the `volumes` path in each task below to match your machine.
+#   5. Create the flow - easiest via the API rather than pasting YAML into
+#      the UI's code editor (which can mangle indentation):
+#        curl -u <email>:<password> -X POST http://localhost:8080/api/v1/flows \
+#          -H "Content-Type: application/x-yaml" --data-binary @kestra/ingestion_flow.yml
+#      (use PUT .../flows/ready/ready_gov_ingestion to update it after the first create)
+#   6. Execute from the UI (Flows -> ready_gov_ingestion -> Execute), or:
+#        curl -u <email>:<password> -X POST http://localhost:8080/api/v1/executions/ready/ready_gov_ingestion
+#
+# Each task installs requirements.txt fresh (slow, ~1-2 min) since this is
+# a one-time flow, not something optimized for repeated runs.
+
+id: ready_gov_ingestion
+namespace: ready
+
+tasks:
+  - id: crawl
+    type: io.kestra.plugin.scripts.shell.Commands
+    containerImage: python:3.11-slim
+    taskRunner:
+      type: io.kestra.plugin.scripts.runner.docker.Docker
+      networkMode: rng_ready-net   # must match the network docker-compose.yml creates
+      volumes:
+        - "//c/Users/Cels/Downloads/rng:/app"   # <-- EDIT to your actual host path
+    env:
+      SQLITE_DB_PATH: /app/ready_raw.db
+    commands:
+      - cd /app && pip install -q -r requirements.txt
+      - cd /app && python -m ingest.crawl --max-pages 50
+
+  - id: chunk
+    type: io.kestra.plugin.scripts.shell.Commands
+    containerImage: python:3.11-slim
+    taskRunner:
+      type: io.kestra.plugin.scripts.runner.docker.Docker
+      networkMode: rng_ready-net
+      volumes:
+        - "//c/Users/Cels/Downloads/rng:/app"   # <-- EDIT to your actual host path
+    env:
+      SQLITE_DB_PATH: /app/ready_raw.db
+    commands:
+      - cd /app && pip install -q -r requirements.txt
+      - cd /app && python -m ingest.chunk
+
+  - id: index_elasticsearch
+    type: io.kestra.plugin.scripts.shell.Commands
+    containerImage: python:3.11-slim
+    taskRunner:
+      type: io.kestra.plugin.scripts.runner.docker.Docker
+      networkMode: rng_ready-net
+      volumes:
+        - "//c/Users/Cels/Downloads/rng:/app"   # <-- EDIT to your actual host path
+    env:
+      SQLITE_DB_PATH: /app/ready_raw.db
+      # Service name, not localhost - this task container is on ready-net.
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+    commands:
+      - cd /app && pip install -q -r requirements.txt
+      - cd /app && python -m ingest.index_es

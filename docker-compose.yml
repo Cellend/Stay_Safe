@@ -1,0 +1,80 @@
+# Local, free infra for the RAG project: Elasticsearch (the index) and
+# Kestra (one-time ingestion orchestration). Security is disabled on ES
+# deliberately - this is a local demo/dev setup, not something exposed
+# beyond localhost.
+#
+# Usage:
+#   docker compose up -d
+#   curl http://localhost:9200        (ES cluster info once healthy)
+#   open http://localhost:8080        (Kestra UI, once it's up)
+#   docker compose down               (stop; add -v to also wipe data)
+#
+# Both services share the `ready-net` network so a Kestra flow can reach
+# Elasticsearch at http://elasticsearch:9200 (NOT localhost - see
+# kestra/ingestion_flow.yml for why).
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.15.0
+    container_name: ready-es
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - xpack.security.http.ssl.enabled=false
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+    ports:
+      - "9200:9200"
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:9200/_cluster/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+    networks:
+      - ready-net
+
+  # Standalone Kestra: embedded H2 + local file storage, no Postgres needed.
+  # Only used to run the one-time ingestion flow - fine to leave stopped
+  # otherwise (`docker compose stop kestra`).
+  kestra:
+    image: kestra/kestra:latest
+    container_name: ready-kestra
+    command: server local
+    user: "root"
+    environment:
+      # Volume mounts are disabled by default on the Docker task runner for
+      # security (arbitrary host-filesystem access from a flow is a real
+      # risk) - the ingestion flow needs one to reach the project code, so
+      # it's explicitly opted in here rather than left as a silent no-op.
+      # Confirmed necessary by testing: without this, Kestra creates the
+      # task's sibling container with ZERO mounts and no error at all -
+      # `docker inspect` on it mid-run showed `"Mounts": []`, which is what
+      # caused every `cd /app` in the flow to fail. (A first attempt at this
+      # used flattened KESTRA_PLUGINS_CONFIGURATIONS_0_... env vars per
+      # Kestra's own docs example - those were visibly set inside the
+      # container but didn't actually take effect, so this uses the
+      # documented KESTRA_CONFIGURATION raw-YAML env var instead, which did.)
+      KESTRA_CONFIGURATION: |
+        kestra:
+          plugins:
+            configurations:
+              - type: io.kestra.plugin.scripts.runner.docker.Docker
+                values:
+                  volume-enabled: true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - kestra_data:/app/storage
+    ports:
+      - "8080:8080"
+    networks:
+      - ready-net
+    depends_on:
+      - elasticsearch
+
+networks:
+  ready-net:
+
+volumes:
+  es_data:
+  kestra_data:

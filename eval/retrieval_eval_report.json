@@ -1,0 +1,23 @@
+[
+  {
+    "mode": "keyword",
+    "k": 5,
+    "hit_rate": 0.8,
+    "mrr": 0.628,
+    "n_questions": 30
+  },
+  {
+    "mode": "vector",
+    "k": 5,
+    "hit_rate": 0.8,
+    "mrr": 0.661,
+    "n_questions": 30
+  },
+  {
+    "mode": "hybrid",
+    "k": 5,
+    "hit_rate": 0.833,
+    "mrr": 0.734,
+    "n_questions": 30
+  }
+]

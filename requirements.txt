@@ -1,0 +1,29 @@
+# --- Ingestion (crawl -> chunk) ---
+requests
+beautifulsoup4
+markdownify
+langdetect
+pypdf
+langchain-text-splitters
+tiktoken
+
+# --- Embeddings + retrieval ---
+# CPU-only torch wheels (sentence-transformers to pull torch in
+
+--extra-index-url https://download.pytorch.org/whl/cpu
+sentence-transformers
+elasticsearch>=8.14,<9
+langchain-elasticsearch
+
+# --- Supabase backend (optional - only used if RETRIEVAL_BACKEND or
+# METRICS_BACKEND in .env is "supabase"; see rag/supabase_retriever.py) ---
+psycopg2-binary
+pgvector
+
+# --- LLM access (NVIDIA NIM, OpenAI-compatible) ---
+openai>=1.30
+
+# --- App / metrics / eval ---
+streamlit
+pandas
+python-dotenv
